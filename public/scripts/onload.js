@@ -21,11 +21,7 @@ $(function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
-<<<<<<< HEAD
 						// $('button[disabled="disabled"]').removeAttr('disabled');
-=======
-						$('button[disabled="disabled"]').removeAttr('disabled');
->>>>>>> 639a219dacabd940d26937c53fa0cf30ed1ce931
 					} else {
 						return false;
 					};
