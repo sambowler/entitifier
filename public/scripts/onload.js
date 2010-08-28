@@ -1,5 +1,4 @@
 $(function() {
-	
 	var height = $(document).height() - 310;
 	$('textarea').css('height', height + 'px');
 	
@@ -18,7 +17,7 @@ $(function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
-						$('button[disabled="disabled"]').removeAttr('disabled');
+						// $('button[disabled="disabled"]').removeAttr('disabled');
 					} else {
 						return false;
 					};
