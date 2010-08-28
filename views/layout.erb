@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Entitifier</title>
+	<link href="/css/style.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script src="/scripts/onload.js"></script>
+</head>
+<body>  
+    <header>
+        <h1><a href="/">Entitifier</a></h1>
+    </header>
+    
+<%= yield %>
+	
+    <footer>
+      <p>Made by <a href="http://sambowler.com">Sam Bowler</a>, <a href="http://twitter.com/aninnovativeweb">follow me on twitter</a>.</p>
+    </footer>
+    
+    <!-- Asynchronous Google Analytics - mathiasbynens.be/notes/async-analytics-snippet -->
+    <script>
+     var _gaq = [['_setAccount', 'UA-6873982-3'], ['_trackPageview']];
+     (function(d, t) {
+      var g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      g.async = true;
+      g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g, s);
+     })(document, 'script');
+    </script>
+</body>
+</html>
