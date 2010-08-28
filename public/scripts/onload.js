@@ -1,4 +1,8 @@
 $(function() {
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 639a219dacabd940d26937c53fa0cf30ed1ce931
 	var height = $(document).height() - 310;
 	$('textarea').css('height', height + 'px');
 	
@@ -17,7 +21,11 @@ $(function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
+<<<<<<< HEAD
 						// $('button[disabled="disabled"]').removeAttr('disabled');
+=======
+						$('button[disabled="disabled"]').removeAttr('disabled');
+>>>>>>> 639a219dacabd940d26937c53fa0cf30ed1ce931
 					} else {
 						return false;
 					};
