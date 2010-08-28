@@ -1,0 +1,10 @@
+  <p>Paste some text or HTML in to that darned beautiful text box down there and it'll escape any nasty characters that should be entities. Perfect for ridding pasted text of Microsoft Word-specific quotes.</p>
+  <form id="direct" action="/direct_input" method="post">
+    <p>
+      <textarea name="html" rows="10" cols="40" placeholder="HTML, omm nom nom"></textarea>
+      <label for="text">Text</label> <input type="radio" name="text_or_html" id="text" value="text" />
+      <label for="html">HTML</label> <input type="radio" name="text_or_html" id="html" value="html" />
+      <input type="submit" id="submit" value="Entitify" />
+      <button id="to_clipboard" disabled="disabled">Copy to Clipboard</button>
+    </p>
+  </form>
