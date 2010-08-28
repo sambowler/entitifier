@@ -512,6 +512,10 @@ def entitify(html)
   html
 end
 
+use Rack::Auth::Basic do |username, password|
+  [username, password] == ['sam', 'calvin_harris']
+end
+
 get '/' do
   erb :home
 end
