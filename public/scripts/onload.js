@@ -1,8 +1,4 @@
 $(function() {
-<<<<<<< HEAD
-=======
-	
->>>>>>> 639a219dacabd940d26937c53fa0cf30ed1ce931
 	var height = $(document).height() - 310;
 	$('textarea').css('height', height + 'px');
 	
