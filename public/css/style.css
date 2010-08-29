@@ -107,6 +107,8 @@ textarea {
 	color: #333;
 	resize: none;
 	display: block;
+	position: relative;
+	z-index: 0;
 }
 
 textarea::-webkit-input-placeholder, textarea.placeholder {

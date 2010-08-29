@@ -1,6 +1,6 @@
 $(function() {	
 	
-	var height = $(document).height() - 330;
+	var height = $(document).height() - 350;
 	$('textarea').css('height', height + 'px');
 	
 	$(window).resize(function() {
