@@ -13,23 +13,25 @@ $(function() {
 		var textarea = $('textarea').val();
 		var radioval = $('input[type="radio"]:checked').val();
 		if(textarea && radioval && textarea !== val) {
+			console.log('hi');
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
 				ifModified: true,
-				data: { html: textarea.val(), text_or_html: radioval },
+				data: { html: textarea, text_or_html: radioval },
 				success: function(d) {
 					if(d) {
-						textarea.fadeOut('fast', function() {
+						$('textarea').fadeOut('fast', function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
-						$('button[disabled="disabled"]').removeAttr('disabled');
+						// $('button[disabled="disabled"]').removeAttr('disabled');
 					} else {
 						return false;
 					};
 				},
 			});
+			return false;
 		} else if(!textarea || textarea == "Text, omm nom nom") {
 			$('#direct').before('<p class="error">I need some text!</p>'); // TODO: Nicer error message presentation.
 			$('textarea').css('height', $('textarea').height() - 41 + 'px');
