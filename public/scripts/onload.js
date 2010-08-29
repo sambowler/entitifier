@@ -5,17 +5,17 @@ $(function() {
 	
 	var val = '';
 	$('#submit').click(function() {
-		var self = $('#direct textarea');
+		var textarea = $('textarea').val();
 		var radioval = $('input[type="radio"]:checked').val();
-		if(self.val() && radioval && self.val() !== val) {
+		if(textarea && radioval && textarea !== val) {
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
 				ifModified: true,
-				data: { html: self.val(), text_or_html: radioval },
+				data: { html: textarea.val(), text_or_html: radioval },
 				success: function(d) {
 					if(d) {
-						self.fadeOut('fast', function() {
+						textarea.fadeOut('fast', function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
@@ -25,35 +25,37 @@ $(function() {
 					};
 				},
 			});
-		} else {
-			alert('You seem to be missing something...');
+		} else if(!textarea || textarea == "Text, omm nom nom") {
+			$('#direct').before('<p class="error">I need some text!</p>'); // TODO: Nicer error message presentation.
+			$('textarea').css('height', $('textarea').height() - 41 + 'px');
+		} else if(!radioval) {
+			$('#text').prev().css('backgroundColor', '#FF0'); 
+			$('#html').prev().css('backgroundColor', '#FF0');
 		}
 		return false;
 	});
 	
-	$('input').each(function() {
-		if($(this).attr('placeholder')) { 
-			$(this).addClass('placeholder'); 
-			$(this).val($(this).attr('placeholder'));
+	if(!Modernizr.input.placeholder) {
+		if($('textarea').attr('placeholder')) { 
+			$('textarea').addClass('placeholder'); 
+			$('textarea').val($('textarea').attr('placeholder'));
 		};
-	});
 
-	// Adapted from: http://blog.zachwaugh.com/post/309915069/swapping-input-field-placeholder-text-with-jquery
-	$('input').each(function() {
-		var placeholder = $(this).attr('placeholder');
+		// Adapted from: http://blog.zachwaugh.com/post/309915069/swapping-input-field-placeholder-text-with-jquery
+		var placeholder = $('textarea').attr('placeholder');
 
-		$(this).focus(function() { 
+		$('textarea').focus(function() { 
 			if($(this).val() == placeholder) {
 				$(this).val('');
 				$(this).removeClass();
 			}
 		});
 
-		$(this).blur(function() {
+		$('textarea').blur(function() {
 			if($(this).val() == '') {
 				$(this).val(placeholder);
 				$(this).addClass('placeholder');
 			}
 		});
-	});
+	}
 });

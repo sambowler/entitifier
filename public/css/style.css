@@ -95,6 +95,8 @@ strong { font-weight: bold; }
 	z-index: 2;
 }
 
+.error { font-weight: bold; color: #F00; }
+
 textarea {
 	font: 12px "Monaco", "Courier New", Courier, monospace;
 	width: 624px;
@@ -121,9 +123,11 @@ textarea::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 10px;
 }
 
+label { padding: 2px; margin: -2px; }
+
 label, input[type="button"], input[type="submit"], button { cursor: pointer; }
 
-input[type="radio"] { vertical-align: baseline; }
+label, input[type="radio"], #submit { vertical-align: middle; }
 
 #submit { margin-left: 20px; }
 
@@ -148,5 +152,3 @@ footer a:hover, footer a:focus {
 	padding: 2px;
 	margin: -2px;
 }
-
-footer a:active
