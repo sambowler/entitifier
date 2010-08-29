@@ -101,7 +101,7 @@ textarea {
 	background: none;
 	border: none;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 10px 0;
 	color: #333;
 	resize: none;
 	display: block;
@@ -121,13 +121,15 @@ textarea::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 10px;
 }
 
-input[type="radio"] { vertical-align: baseline; }
-
 label, input[type="button"], input[type="submit"], button { cursor: pointer; }
+
+input[type="radio"] { vertical-align: baseline; }
 
 #submit { margin-left: 20px; }
 
 button[disabled="disabled"] { cursor: wait; }
+
+#to_clipboard_container { position: relative; }
 
 /* Footer */
 

@@ -1,23 +1,25 @@
-$(function() {
-	var height = $(document).height() - 310;
+$(function() {	
+	
+	var height = $(document).height() - 330;
 	$('textarea').css('height', height + 'px');
 	
 	var val = '';
 	$('#submit').click(function() {
 		var self = $('#direct textarea');
-		if(self.val() && self.val() !== val && $('input[type="radio"]:checked').val()) {
+		var radioval = $('input[type="radio"]:checked').val();
+		if(self.val() && radioval && self.val() !== val) {
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
 				ifModified: true,
-				data: { html: self.val(), text_or_html: $('input[type="radio"]:checked').val() },
+				data: { html: self.val(), text_or_html: radioval },
 				success: function(d) {
 					if(d) {
 						self.fadeOut('fast', function() {
 							$(this).val(d).fadeIn('fast');
 							val = d;
 						});
-						// $('button[disabled="disabled"]').removeAttr('disabled');
+						$('button[disabled="disabled"]').removeAttr('disabled');
 					} else {
 						return false;
 					};
