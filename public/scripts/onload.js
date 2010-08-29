@@ -3,6 +3,11 @@ $(function() {
 	var height = $(document).height() - 330;
 	$('textarea').css('height', height + 'px');
 	
+	$(window).resize(function() {
+		var height = $(document).height() - 330;
+		$('textarea').css('height', height + 'px');
+	});
+	
 	var val = '';
 	$('#submit').click(function() {
 		var textarea = $('textarea').val();
