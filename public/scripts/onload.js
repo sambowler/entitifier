@@ -11,10 +11,8 @@ $(function() {
 	var val = '';
 	$('#submit').click(function() {
 		var textarea = $('textarea').val();
-		var checkval = textarea.search('<?php');
-		console.log(checkval);
 		var radioval = $('input[type="radio"]:checked').val();
-		if(textarea && radioval && textarea !== val && checkval !== 2) {
+		if(textarea && radioval && textarea !== val) {
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
