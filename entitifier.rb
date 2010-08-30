@@ -4,7 +4,7 @@ require 'lib/hpricot_text_gsub.rb'
 
 def entityReplace(el)
   el.text_gsub! /&/, '&amp;'
-  el.text_gsub! /&amp;amp;/, '&amp;'
+  el.text_gsub! /&amp;amp;/, '&amp;' # Hacky workaround 
   el.text_gsub! /"/, '&quot;'
   el.text_gsub! /</, '&lt;'
   el.text_gsub! />/, '&gt;'
