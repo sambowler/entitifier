@@ -4,16 +4,17 @@ $(function() {
 	$('textarea').css('height', height + 'px');
 	
 	$(window).resize(function() {
-		var height = $(document).height() - 330;
+		var height = $(document).height() - 350;
 		$('textarea').css('height', height + 'px');
 	});
 	
 	var val = '';
 	$('#submit').click(function() {
 		var textarea = $('textarea').val();
+		var checkval = textarea.search('<?php');
+		console.log(checkval);
 		var radioval = $('input[type="radio"]:checked').val();
-		if(textarea && radioval && textarea !== val) {
-			console.log('hi');
+		if(textarea && radioval && textarea !== val && checkval !== 2) {
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
