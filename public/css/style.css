@@ -117,8 +117,8 @@ textarea {
 	padding: 0;
 	margin: 0 0 10px 0;
 	color: #333;
-	resize: none;
-	-moz-resize: none;
+	resize: x;
+	-moz-resize: x;
 	display: block;
 	position: relative;
 	z-index: 0;
