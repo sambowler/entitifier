@@ -129,7 +129,7 @@ label { padding: 2px; margin: -2px; }
 
 label, input[type="button"], input[type="submit"], button { cursor: pointer; }
 
-label, input[type="radio"], #submit { vertical-align: middle; }
+label, input[type="radio"], input[type="checkbox"], #submit { vertical-align: middle; }
 
 #submit { margin-left: 20px; }
 
