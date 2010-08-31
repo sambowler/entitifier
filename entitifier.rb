@@ -516,6 +516,7 @@ def entitify(html)
 end
 
 get '/' do
+  @host = request.env["HTTP_HOST"]
   erb :home
 end
 
