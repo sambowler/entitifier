@@ -50,14 +50,14 @@ h1 a:hover, h1 a:focus {
 p {
 	color: #444;
 	line-height: 1.7em;
-	margin-bottom: 1.5em;
+	margin-bottom: 1.1em;
 }
 
 strong { font-weight: bold; }
 
 /* Main Content */
 
-#direct p:first-child {
+form p:first-child {
 	color: #333;
 	text-shadow: 0 -1px 0 #FFF;
 	background: rgba(0, 0, 0, 0.05);
@@ -74,7 +74,7 @@ strong { font-weight: bold; }
 	-webkit-background-clip: padding-box;
 }
 
-#direct p:first-child:before {
+form p:first-child:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -90,12 +90,16 @@ strong { font-weight: bold; }
 	-webkit-background-clip: padding-box;
 }
 
-#direct p * {
+form p * {
 	position: relative;
 	z-index: 2;
 }
 
-.error { font-weight: bold; color: #F00; }
+.error {
+	font-weight: bold;
+	color: #F00;
+	margin-bottom: 1.5em;
+}
 
 textarea {
 	font: 12px "Monaco", "Courier New", Courier, monospace;
