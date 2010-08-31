@@ -8,6 +8,11 @@ This project wouldn't have been possible without:
 - [Sinatra](http://wwww.sinatrarb.com)
 - [Hpricot](http://hpricot.com)
 
+Upcoming
+----------
+
+- Ability to toggle typographic quotes
+
 Known issues
 -----------
 

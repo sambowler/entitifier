@@ -2,6 +2,9 @@ require 'vendor/sinatra/lib/sinatra.rb'
 require 'vendor/hpricot/lib/hpricot.rb'
 require 'lib/hpricot_text_gsub.rb'
 
+# FIXME: Accept HTML5 Elements
+# FIXME: Ignore <?php ?> <%= %> etc.
+
 def entityReplace(el)
   el.text_gsub! /&/, '&amp;'
   el.text_gsub! /&amp;amp;/, '&amp;' # Hacky workaround 

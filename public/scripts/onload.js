@@ -11,9 +11,8 @@ $(function() {
 	var val = '';
 	$('#submit').click(function() {
 		var textarea = $('textarea').val();
-		
 		var radioval = $('input[type="radio"]:checked').val();
-		if(textarea && radioval && textarea !== val && checkval !== 2) {
+		if(textarea && radioval && textarea !== val) {
 			$.ajax({
 				type: 'POST',
 				url: '/direct_input',
@@ -33,7 +32,7 @@ $(function() {
 			});
 			return false;
 		} else if(!textarea || textarea == "Text, omm nom nom") {
-			$('#direct').before('<p class="error">I need some text!</p>'); // TODO: Nicer error message presentation.
+			$('form').before('<p class="error">I need some text!</p>'); // TODO: Nicer error message presentation.
 			$('textarea').css('height', $('textarea').height() - 41 + 'px');
 		} else if(!radioval) {
 			$('#text').prev().css('backgroundColor', '#FF0'); 
@@ -42,23 +41,21 @@ $(function() {
 		return false;
 	});
 	
-	if(!Modernizr.input.placeholder) {
-		if($('textarea').attr('placeholder')) { 
-			$('textarea').addClass('placeholder'); 
-			$('textarea').val($('textarea').attr('placeholder'));
-		};
+	if(!Modernizr.input.placeholder) { // Uses modernizr to check placeholder support
+		var el = $('textarea');
+		var placeholder = el.attr('placeholder');
+		
+		if(el.attr('placeholder')) { el.addClass('placeholder'); el.val(placeholder); };
 
 		// Adapted from: http://blog.zachwaugh.com/post/309915069/swapping-input-field-placeholder-text-with-jquery
-		var placeholder = $('textarea').attr('placeholder');
-
-		$('textarea').focus(function() { 
+		el.focus(function() { 
 			if($(this).val() == placeholder) {
 				$(this).val('');
 				$(this).removeClass();
 			}
 		});
 
-		$('textarea').blur(function() {
+		el.blur(function() {
 			if($(this).val() == '') {
 				$(this).val(placeholder);
 				$(this).addClass('placeholder');
