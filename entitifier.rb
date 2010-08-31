@@ -519,10 +519,20 @@ get '/' do
   erb :home
 end
 
-post '/direct_input' do
+post '/' do
+  @javascript = params[:javascript_disabled]
   @html = params[:html]
-  @content = entitify(@html) if params[:text_or_html] == "html"
-  @content = textReplace(@html) if params[:text_or_html] == "text"
+  if @html
+    @content = entitify(@html) if params[:text_or_html] == "html"
+    @content = textReplace(@html) if params[:text_or_html] == "text"
+  else
+    redirect '/', 500
+    pp 'hello'
+  end
   
-  erb :display_code, :layout => false
+  unless @javascript
+    erb :display_code, :layout => false
+  else
+    erb :display_code
+  end
 end
