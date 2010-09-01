@@ -6,7 +6,7 @@ require 'lib/hpricot_text_gsub.rb'
 # FIXME: Ignore <?php ?> <%= %> etc.
 # TODO: Typographic quotes toggling
 
-def entityReplace(el, typographic_quotes = nil)
+def entityReplace(el, typographic_quotes)
   el.text_gsub! /&/, '&amp;'
   el.text_gsub! /&amp;amp;/, '&amp;' # Hacky workaround 
   el.text_gsub! /"/, '&quot;'
@@ -169,15 +169,15 @@ def entityReplace(el, typographic_quotes = nil)
   el.text_gsub! /–/, '&ndash;'
   el.text_gsub! /—/, '&mdash;'
   if typographic_quotes
-    str.gsub! /‘/, '&lsquo;'
-    str.gsub! /’/, '&rsquo;'
-    str.gsub! /“/, '&ldquo;'
-    str.gsub! /”/, '&rdquo;'
+    el.text_gsub! /‘/, '&lsquo;'
+    el.text_gsub! /’/, '&rsquo;'
+    el.text_gsub! /“/, '&ldquo;'
+    el.text_gsub! /”/, '&rdquo;'
   else
-    str.gsub! /‘/, '&quot;'
-    str.gsub! /’/, '&quot;'
-    str.gsub! /“/, '&quot;'
-    str.gsub! /”/, '&quot;'
+    el.text_gsub! /‘/, '&quot;'
+    el.text_gsub! /’/, '&quot;'
+    el.text_gsub! /“/, '&quot;'
+    el.text_gsub! /”/, '&quot;'
   end
   el.text_gsub! /‚/, '&sbquo;'
   el.text_gsub! /„/, '&bdquo;'
@@ -515,17 +515,18 @@ def textReplace(str, typographic_quotes = nil)
   str
 end
 
-def entitify(html)
+def entitify(html, typographic_quotes = nil)
   @html = ''
   h = Hpricot(html)
+  # We don't want to replace stuff in the head
   unless h.search("/html/body").empty?
     body = h.search "/html/body"
     body.each do |el|
-      entityReplace(el)
+      entityReplace(el, typographic_quotes)
     end
     html = h
   else
-    html = entityReplace(h)
+    html = entityReplace(h, typographic_quotes)
   end
   html
 end
