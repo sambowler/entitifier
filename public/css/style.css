@@ -28,7 +28,7 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
-header { overflow: hidden; }
+header { height: 71px; }
 
 h1 {
 	font: 40px "BebasRegular", sans-serif;
@@ -147,8 +147,6 @@ label, input[type="radio"], input[type="checkbox"], #submit { vertical-align: mi
 #submit { margin-left: 20px; }
 
 button[disabled="disabled"] { cursor: wait; }
-
-#to_clipboard_container { position: relative; }
 
 /* Footer */
 
