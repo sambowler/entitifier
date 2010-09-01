@@ -1,9 +1,11 @@
     <p>Paste some text or HTML in to that darned beautiful text box down there and it&rsquo;ll escape any nasty characters that should be entities. Perfect for ridding text of Microsoft Word specific quotations. <strong>The Entitifier doesn't like inline PHP, erb etc. tags or HTML5 elements, yet. Please avoid them.</strong></p>
-    <form action="/direct_input" method="post">
+    <form action="/" method="post">
         <p>
             <textarea name="html" rows="10" cols="40" placeholder="Text, omm nom nom"></textarea>
             <label for="text">Text</label> <input type="radio" name="text_or_html" id="text" value="text" checked="checked" />
             <label for="html">HTML</label> <input type="radio" name="text_or_html" id="html" value="html" />
+            <label for="typographic_quotes">Typographic Quotes?</label> <input type="checkbox" name="typographic_quotes" id="typographic_quotes" value="typographic_quotes" />
+            <input type="hidden" name="javascript_disabled" id="javascript_disabled" value="javascript_disabled" />
             <input type="submit" id="submit" value="Entitify" />
             <!-- I'm working on it <button type="button" id="to_clipboard" disabled="disabled">Copy to Clipboard</button>-->
         </p>

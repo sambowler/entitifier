@@ -4,8 +4,9 @@ require 'lib/hpricot_text_gsub.rb'
 
 # FIXME: Accept HTML5 Elements
 # FIXME: Ignore <?php ?> <%= %> etc.
+# TODO: Typographic quotes toggling
 
-def entityReplace(el)
+def entityReplace(el, typographic_quotes = nil)
   el.text_gsub! /&/, '&amp;'
   el.text_gsub! /&amp;amp;/, '&amp;' # Hacky workaround 
   el.text_gsub! /"/, '&quot;'
@@ -167,11 +168,18 @@ def entityReplace(el)
   el.text_gsub! /ϖ/, '&piv;'
   el.text_gsub! /–/, '&ndash;'
   el.text_gsub! /—/, '&mdash;'
-  el.text_gsub! /‘/, '&lsquo;'
-  el.text_gsub! /’/, '&rsquo;'
+  if typographic_quotes
+    str.gsub! /‘/, '&lsquo;'
+    str.gsub! /’/, '&rsquo;'
+    str.gsub! /“/, '&ldquo;'
+    str.gsub! /”/, '&rdquo;'
+  else
+    str.gsub! /‘/, '&quot;'
+    str.gsub! /’/, '&quot;'
+    str.gsub! /“/, '&quot;'
+    str.gsub! /”/, '&quot;'
+  end
   el.text_gsub! /‚/, '&sbquo;'
-  el.text_gsub! /“/, '&ldquo;'
-  el.text_gsub! /”/, '&rdquo;'
   el.text_gsub! /„/, '&bdquo;'
   el.text_gsub! /†/, '&dagger;'
   el.text_gsub! /‡/, '&Dagger;'
@@ -252,7 +260,7 @@ def entityReplace(el)
   el.text_gsub! /♦/, '&diams;'
 end
 
-def textReplace(str)
+def textReplace(str, typographic_quotes = nil)
   str.gsub! /&/, '&amp;'
   str.gsub! /&amp;amp;/, '&amp;'
   str.gsub! /"/, '&quot;'
@@ -414,11 +422,18 @@ def textReplace(str)
   str.gsub! /ϖ/, '&piv;'
   str.gsub! /–/, '&ndash;'
   str.gsub! /—/, '&mdash;'
-  str.gsub! /‘/, '&lsquo;'
-  str.gsub! /’/, '&rsquo;'
+  if typographic_quotes
+    str.gsub! /‘/, '&lsquo;'
+    str.gsub! /’/, '&rsquo;'
+    str.gsub! /“/, '&ldquo;'
+    str.gsub! /”/, '&rdquo;'
+  else
+    str.gsub! /‘/, '&quot;'
+    str.gsub! /’/, '&quot;'
+    str.gsub! /“/, '&quot;'
+    str.gsub! /”/, '&quot;'
+  end
   str.gsub! /‚/, '&sbquo;'
-  str.gsub! /“/, '&ldquo;'
-  str.gsub! /”/, '&rdquo;'
   str.gsub! /„/, '&bdquo;'
   str.gsub! /†/, '&dagger;'
   str.gsub! /‡/, '&Dagger;'
@@ -520,10 +535,20 @@ get '/' do
   erb :home
 end
 
-post '/direct_input' do
+post '/' do
+  @javascript = params[:javascript_disabled]
   @html = params[:html]
-  @content = entitify(@html) if params[:text_or_html] == "html"
-  @content = textReplace(@html) if params[:text_or_html] == "text"
+  if @html
+    @content = entitify(@html, params[:typographic_quotes]) if params[:text_or_html] == "html"
+    @content = textReplace(@html, params[:typographic_quotes]) if params[:text_or_html] == "text"
+  else
+    redirect '/', 500
+    pp 'hello'
+  end
   
-  erb :display_code, :layout => false
+  unless @javascript
+    erb :display_code, :layout => false
+  else
+    erb :display_code
+  end
 end

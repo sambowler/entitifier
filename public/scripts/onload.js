@@ -1,4 +1,6 @@
 $(function() {	
+	$('#javascript_disabled').remove();
+	$('textarea').focus();
 	
 	var height = $(document).height() - 350;
 	$('textarea').css('height', height + 'px');
@@ -7,12 +9,13 @@ $(function() {
 	$('#submit').click(function() {
 		var textarea = $('textarea').val();
 		var radioval = $('input[type="radio"]:checked').val();
-		if(textarea && radioval && textarea !== val) {
+		var typ_quotes = $('input[type="checkbox"]:checked').val();
+		if(textarea && radioval && textarea !== val && textarea !== "Text, omm nom nom") {
 			$.ajax({
 				type: 'POST',
-				url: '/direct_input',
+				url: '/',
 				ifModified: true,
-				data: { html: textarea, text_or_html: radioval },
+				data: { html: textarea, text_or_html: radioval, typographic_quotes: typ_quotes },
 				success: function(d) {
 					if(d) {
 						$('textarea').fadeOut('fast', function() {
