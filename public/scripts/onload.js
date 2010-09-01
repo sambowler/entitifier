@@ -27,8 +27,10 @@ $(function() {
 			});
 			return false;
 		} else if(!textarea || textarea == "Text, omm nom nom") {
-			$('form').before('<p class="error">I need some text!</p>'); // TODO: Nicer error message presentation.
-			$('textarea').css('height', $('textarea').height() - 41 + 'px');
+			if($('.error').length == 0) {
+				$('form').before('<p class="error">I need some text!</p>');
+				$('textarea').css('height', $('textarea').height() - 41 + 'px');
+			}
 		} else if(!radioval) {
 			$('#text').prev().css('backgroundColor', '#FF0'); 
 			$('#html').prev().css('backgroundColor', '#FF0');
