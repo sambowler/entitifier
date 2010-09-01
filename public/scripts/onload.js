@@ -10,7 +10,7 @@ $(function() {
 		var textarea = $('textarea').val();
 		var radioval = $('input[type="radio"]:checked').val();
 		var typ_quotes = $('input[type="checkbox"]:checked').val();
-		if(textarea && radioval && textarea !== val) {
+		if(textarea && radioval && textarea !== val && textarea !== "Text, omm nom nom") {
 			$.ajax({
 				type: 'POST',
 				url: '/',
