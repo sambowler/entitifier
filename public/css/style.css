@@ -111,7 +111,8 @@ form p * {
 
 textarea {
 	font: 12px "Monaco", "Inconsolata", "Courier New", Courier, monospace;
-	width: 624px;
+	max-width: 624px; /* Just setting width still allowed resizing on WebKit/OS X. */
+	min-width: 624px;
 	background: none;
 	border: none;
 	padding: 0;
