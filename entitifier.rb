@@ -7,6 +7,9 @@ require 'lib/hpricot_text_gsub.rb'
 # FIXME: Ignore <?php ?> <%= %> etc.
 # TODO: Typographic quotes toggling
 
+ERB_REGEX = /(?=(<%(?>.*%)>))/m
+PHP_REGEX = /(?=(<\?php(?>.*?\?)>))/m
+
 ENTITIES = {
   /&/ => '&amp;',
   /&amp;amp;/ => '&amp;', # Hacky workaround 
@@ -276,6 +279,13 @@ def entityReplace(el, typographic_quotes)
 end
 
 def textReplace(str, typographic_quotes = nil)
+  rep = {}
+    while (str =~ ERB_REGEX) || (str =~ PHP_REGEX)
+      r = rand
+      rep["\0#{r}\0"] = $1
+      str.gsub!($1, "\0#{r}\0")
+    end
+
   if typographic_quotes
     ENTITIES.merge(TYPE_QUOTES).each do |k, v|
       str.gsub! k, v
@@ -284,6 +294,10 @@ def textReplace(str, typographic_quotes = nil)
     ENTITIES.each do |k, v|
       str.gsub! k, v
     end
+  end
+  
+  rep.each do |k, v|
+    str.gsub!(k, v)
   end
 
   str
