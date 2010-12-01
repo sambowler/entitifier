@@ -20,7 +20,7 @@
 <body>  
     <header>
         <h1><a href="/">Entitifier</a></h1>
-        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://entitifier.sambowler.com" data-text="Entitifier: a little tool to encode characters in text or HTML w/ the correct entities." data-count="horizontal" data-via="aninnovativeweb">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://entitifier.sambowler.com" data-text="Entitifier: a little tool to encode characters in text or HTML w/ the correct entities." data-count="horizontal" data-via="sam_bowler">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </header>
     
     <div id="main">
@@ -28,18 +28,18 @@
     </div><!-- end #main -->
 	
     <footer>
-      <p>Made by <a href="http://sambowler.com">Sam Bowler</a>, <a href="http://twitter.com/aninnovativeweb">follow me on twitter</a>. I'd really appreciate some help fixing the issues on <a href="http://github.com/sambowler/entitifier">github</a>. </p>
+      <p>Made by <a href="http://sambowler.com">Sam Bowler</a>, <a href="http://twitter.com/sam_bowler">follow me on twitter</a>. I'd really appreciate some help fixing the issues on <a href="http://github.com/sambowler/entitifier">github</a>. </p>
     </footer>
     
-    <script>
-     var _gaq = [['_setAccount', 'UA-6873982-4'], ['_trackPageview']];
-     (function(d, t) {
-      var g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      g.async = true;
-      g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g, s);
-     })(document, 'script');
-    </script>
+    <% if @host == "entitifier.sambowler.com" %><script>
+        var _gaq = [['_setAccount', 'UA-6873982-4'], ['_trackPageview']];
+        (function(d, t) {
+            var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+            g.async = true;
+            g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s);
+        })(document, 'script');
+    </script><% end %>
 </body>
 </html>
