@@ -12,7 +12,7 @@ PHP_REGEX = /(?=(<\?php(?>.*?\?)>))/m
 
 ENTITIES = {
   /&/ => '&amp;',
-  /&amp;amp;/ => '&amp;', # Hacky workaround 
+  /&amp;amp;/ => '&amp;',
   /"/ => '&quot;',
   /</ => '&lt;',
   />/ => '&gt;',
@@ -303,7 +303,7 @@ def textReplace(str, typographic_quotes = nil)
   str
 end
 
-def entitify(html, typographic_quotes = nil)
+def htmlReplace(html, typographic_quotes = nil)
   @html = ''
   h = Hpricot(html)
   # We don't want to replace stuff in the head
@@ -327,11 +327,10 @@ post '/' do
   @javascript = params[:javascript_disabled]
   @html = params[:html]
   if @html
-    @content = entitify(@html, params[:typographic_quotes]) if params[:text_or_html] == "html"
+    @content = htmlReplace(@html, params[:typographic_quotes]) if params[:text_or_html] == "html"
     @content = textReplace(@html, params[:typographic_quotes]) if params[:text_or_html] == "text"
   else
     redirect '/', 500
-    pp 'hello'
   end
   
   unless @javascript
