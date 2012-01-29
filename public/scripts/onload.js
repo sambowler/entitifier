@@ -2,7 +2,7 @@ $(function() {
 	$('#javascript_disabled').remove();
 	$('textarea').focus();
 	
-	var height = $(document).height() - 350;
+	var height = $(document).height() - 410;
 	$('textarea').css('height', height + 'px');
 	
 	var val = '';
