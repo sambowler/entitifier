@@ -7,17 +7,15 @@ $(function() {
 	$('textarea').css('height', height + 'px');
 	
 	$('#submit').click(function() {
-		var textarea = $('textarea').val(),
-            radioVal = $('input[type="radio"]:checked').val(),
+		var string = $('textarea').val(),
+            html = ($('#html').is(':checked')) ? true : false;
             typQuotes = ($('#typographic_quotes').is(':checked')) ? true : false;
 
-        console.log(typQuotes);
+		if(string && string !== '' && string !== "Text, omm nom nom") {
+            var c = new Conversion(string, html, typQuotes);
 
-		if(textarea && radioVal && textarea !== '' && textarea !== "Text, omm nom nom") {
-            HTMLParser(textarea, {
-                chars: function(text) {
-                    var c = new Conversion(text, typQuotes);
-                }
+            $('textarea').fadeOut('fast', function() {
+                $(this).val(c.getNewString()).fadeIn('fast');
             });
 
             //$.ajax({
@@ -39,7 +37,7 @@ $(function() {
 			//});
 
 			return false;
-		} else if(!textarea || textarea == "Text, omm nom nom") {
+		} else if(!string || string == "Text, omm nom nom") {
 			if($('.error').length == 0) {
 				$('form').before('<p class="error">I need some text!</p>');
 				$('textarea').css('height', $('textarea').height() - 41 + 'px');

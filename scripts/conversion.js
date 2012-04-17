@@ -1,41 +1,87 @@
 // TODO: Abstract libraries out so not created on object instantiation
-function Conversion(text, typographicQuotes) {
-    var ret = text;
-        
-    // FIXME
-    if(typographicQuotes) ret = this.entityReplace(ret, this.typographicQuotesLibrary);
+function Conversion(text, html, typographicQuotes) {
+    var ret = text,
+        tests = [],
+        results = [],
+        d = new DOMParser();
 
-    ret = this.entityReplace(text, this.entities);
+    // Construct an array of tests
+    // TODO: Automatically detect HTML
+    if(html) {
+        var doc = d.parseFromString(text, 'text/html');
 
-    this.newString = ret;
+        // http://stackoverflow.com/a/2084614
+        $(doc).contents().each(function processNodes() {
+            if(this.nodeType == 3) {
+                // FIXME: Shouldn't entitify characters in <script> tags
+                var trimmed = $.trim(this.textContent);
+
+                if(trimmed.length != 0) {
+                    tests.push($(this).text());
+                }
+            } else {
+                $(this).contents().each(processNodes);
+            }
+        });
+    } else {
+        tests.push(text);
+    }
+
+    var results = this.generateResults(tests, typographicQuotes);
+    this.newString = this.replaceOriginals(text, tests, results);
 }
 
 Conversion.prototype.getNewString = function() {
     return this.newString;
 }
 
-Conversion.prototype.entityReplace = function(str, library) {
-    var ret = str;
+Conversion.prototype.generateResults = function(tests, typographicQuotes) {
+    var ret = [];
 
-    console.log(str);
+    for(i = 0, len = tests.length; i < len; i++) {
+        var result = tests[i];
 
-    for(var e in library) {
-        if(str.indexOf(e) !== -1) {
-            var re = new RegExp(e, 'g');
-
-            ret = ret.replace(re, library[e]);
+        if(typographicQuotes) {
+            for(var e in this.typographicQuotesLibrary) {
+                if(result.indexOf(e) !== -1) result = this.replaceEntity(result, e, this.typographicQuotesLibrary[e]);
+            }
         }
-    }
 
-    console.log(ret);
+        for(var e in this.entities) {
+            if(result.indexOf(e) !== -1) result = this.replaceEntity(result, e, this.entities[e]);
+        }
+
+        // Don't replace the & in entities i.e &quot; becoming &amp;quot;
+        result = result.replace(/&amp;(\w+;)/g, function(a, b) { return '&' + b; });
+
+        ret.push(result);
+    }
 
     return ret;
 }
 
+Conversion.prototype.replaceOriginals = function(originalStr, tests, results) {
+    // Loop through tests
+    // Find each test in original string
+    // Replace test with new content
+    var ret = originalStr;
+
+    for(i = 0, len = tests.length; i < len; i++) {
+        ret = ret.replace(tests[i], results[i]);
+    }
+
+    return ret;
+}
+
+Conversion.prototype.replaceEntity = function(str, original, escaped) {
+    var re = new RegExp(original, 'g');
+
+    return str.replace(re, escaped);
+}
+
+// TODO: Switch to entity numbers instead of names (better browser support)
 Conversion.prototype.entities = {
     '&': '&amp;',
-    '&amp;amp;': '&amp;',
-    '"': '&quot;',
     '<': '&lt;',
     '>': '&gt;',
     '¡': '&iexcl;',
@@ -194,10 +240,10 @@ Conversion.prototype.entities = {
     'ϖ': '&piv;',
     '–': '&ndash;',
     '—': '&mdash;',
-    '‘': '&quot;',
-    '’': '&quot;',
-    '“': '&quot;',
-    '”': '&quot;',
+    '‘': '\'',
+    '’': '\'',
+    '“': '"',
+    '”': '"',
     '‚': '&sbquo;',
     '„': '&bdquo;',
     '†': '&dagger;',
