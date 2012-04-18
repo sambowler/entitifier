@@ -54,13 +54,13 @@ Conversion.prototype.generateResults = function(tests, typographicQuotes) {
 }
 
 Conversion.prototype.replaceOriginals = function(originalStr, tests, results) {
-    // Loop through tests
-    // Find each test in original string
-    // Replace test with new content
     var ret = originalStr;
 
     for(i = 0, len = tests.length; i < len; i++) {
-        ret = ret.replace(tests[i], results[i]);
+        var test = tests[i].replace(/\$/g, '$$$'),
+            result = results[i].replace(/\$/g, '$$$');
+
+        ret = ret.replace(test, result);
     }
 
     return ret;
@@ -72,7 +72,6 @@ Conversion.prototype.replaceEntity = function(str, original, escaped) {
     return str.replace(re, escaped);
 }
 
-// TODO: Switch to entity numbers instead of names (better browser support)
 Conversion.prototype.entities = {
     '&': '&#38;',
     '<': '&#60;',

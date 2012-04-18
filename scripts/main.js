@@ -2,6 +2,7 @@
 // TODO: JavaScript Disabled (still provide content)
 // TODO: Strings to ignore (e.g. <%= %> etc.)
 // TODO: Option to choose named and unicode entities
+// TODO: CMD/CTRL-ENTER to submit
 $(function() {	
 	$('textarea').focus();
 	

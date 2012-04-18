@@ -12,6 +12,20 @@ describe('Conversion', function() {
 
             expect(c.getNewString()).toEqual(Conversion.prototype.entities[e]);
         }
+
+        var str = 'hello $$ hello',
+            c = new Conversion(str);
+
+        expect(c.getNewString()).toEqual(str);
+
+        var str = 'hello $\' hello',
+            c = new Conversion(str);
+
+        expect(c.getNewString()).toEqual(str);
+
+        var c = new Conversion('$£');
+
+        expect(c.getNewString()).toEqual('$&#163;');
     });
 
     it('Should not replace ampersands that are already part of an entity', function() {
