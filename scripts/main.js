@@ -5,7 +5,7 @@
 $(function() {	
 	$('textarea').focus();
 	
-	var height = $(document).height() - 420;
+	var height = $(document).height() - 425;
 	$('textarea').css('height', height + 'px');
 
     $('#about').hide();

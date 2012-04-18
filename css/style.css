@@ -44,7 +44,7 @@ h1 a {
 
 h1 a:hover, h1 a:focus {
 	text-shadow: 0 -1px 0 #FFF;
-	background: #E2F7CE;
+	background: #D5F4B9;
 	padding: 0 7px 5px;
 	margin: 0 -7px -5px;
 	cursor: pointer;
@@ -70,7 +70,7 @@ a {
 }
 
 a:hover {
-	background: #E2F7CE;
+	background: #D5F4B9;
 	padding: 2px;
 	margin: -2px;
 }
@@ -83,7 +83,7 @@ a:hover {
 h2 {
     font-size: 17px;
     font-weight: bold;
-    margin: 1.75em 0 0.2em;
+    margin: 0 0 0.2em;
 }
 
 /* Main Content */
