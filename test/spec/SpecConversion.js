@@ -15,7 +15,7 @@ describe('Conversion', function() {
     });
 
     it('Should not replace ampersands that are already part of an entity', function() {
-        var str = 'Foo &amp; Bar',
+        var str = 'Foo &#38; Bar',
             c = new Conversion(str);
 
         expect(c.getNewString()).toEqual(str);
@@ -24,13 +24,13 @@ describe('Conversion', function() {
     it('Should allow the user to use typographic quotes', function() {
         var c = new Conversion('“Foo”', true);
 
-        expect(c.getNewString()).toEqual('&ldquo;Foo&rdquo;');
+        expect(c.getNewString()).toEqual('&#8220;Foo&#8221;');
     });
 
     it('Should return valid HTML if specified by the user', function() {
         var c = new Conversion('<header><p>Foo & Bar</p></header>');
 
-        expect(c.getNewString()).toEqual('<header><p>Foo &amp; Bar</p></header>');
+        expect(c.getNewString()).toEqual('<header><p>Foo &#38; Bar</p></header>');
     });
 
     it('Should ignore entities in attributes', function() {
