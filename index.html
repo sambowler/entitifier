@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1;" />
+	
+	<!--[if IE]><![endif]-->
+	
+	<title>Entitifier &mdash; Convert obscure characters to the proper HTML entities</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="This tool will convert any characters in text or HTML to the proper HTML entities. Great for getting rid of Microsoft Word specific quotes.">
+	<meta name="author" content="Sam Bowler">
+	<meta name="keywords" content="microsoft, word, html, entities, entity, convertor, converter, quotes, quotation, entitifier, sam, bowler, entifier">
+	
+	<link href="css/style.css" rel="stylesheet" />
+
+    <script src="http://livejs.com/live.js"></script>
+</head>
+<body>  
+    <header>
+        <h1><a href="/">Entitifier</a></h1>
+        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://entitifier.sambowler.com" data-text="Entitifier: a little tool to encode characters in text or HTML w/ the correct entities." data-count="horizontal" data-via="sam_bowler">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </header>
+    
+    <div id="main">
+        <p>Paste some text or HTML in to that darned beautiful text box down there and it&rsquo;ll escape any nasty characters that should be entities. Perfect for ridding text of Microsoft Word specific quotations. <a id="more" href="#">Read <span id="more-or-less">more</span> about entities...</a></p>
+
+        <div id="about">
+            <h2>What is Entitifier?</h2>
+            <p>Entitifier is a simple tool that will convert characters in given text or HTML in to the correct HTML entities. It uses numerical entities because named entities, put simply, have less widespread support, you can read more on the subject in an article on <a href="http://people.w3.org/~dom/archives/2005/04/named-versus-numeric-entities/">Don't Call Me DOM</a>.</p>
+
+            <p>Optionally, you can specify that you would like to use typographic quotes, this will convert left and right double quotes in to the correct entities (&ldquo;&rdquo;) rather than simple double quotes (") for maximal typographic perfection.</p>
+
+            <h2>Why are Entities Important?</h2>
+            <p>The importance of entities is up for discussion. With technology advancing, most browsers now fully support proper UTF-8 encoding and won't have any problems rendering unicode characters but there are still edge cases where compatibility is an issue. Entities are also still required for reserved XML characters (&amp;, &lt;, &gt;). More discussion is available on <a href="http://stackoverflow.com/questions/436615/when-should-one-use-html-entities">StackOverflow</a>.</p>
+        </div><!-- end #about -->
+
+        <form action="" method="post">
+            <p>
+                <textarea name="html" rows="10" cols="40" placeholder="Text, omm nom nom"></textarea>
+                <label for="typographic_quotes">Typographic Quotes?</label> <input type="checkbox" id="typographic_quotes" />
+                <input type="submit" id="submit" value="Entitify" />
+                <!-- I'm working on it <button type="button" id="to_clipboard" disabled="disabled">Copy to Clipboard</button>-->
+            </p>
+        </form>
+    </div><!-- end #main -->
+
+    <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-4887694468579242";
+        /* Entitifier */
+        google_ad_slot = "7781035183";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        //-->
+    </script>
+    <script src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+	
+    <footer>
+      <p>Made by <a href="http://sambowler.com">Sam Bowler</a>, <a href="http://twitter.com/sam_bowler">follow me on twitter</a>.</p>
+    </footer>
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="scripts/DOMParser.js"></script>
+	<script src="scripts/conversion.js"></script>
+	<script src="scripts/main.js"></script>
+
+    <script>
+        var _gaq = [['_setAccount', 'UA-6873982-4'], ['_trackPageview']];
+        (function(d, t) {
+            var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+            g.async = true;
+            g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s);
+        })(document, 'script');
+    </script>
+</body>
+</html>

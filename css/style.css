@@ -1,0 +1,168 @@
+/* Eric Meyer reset - http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;margin:0;padding:0;}:focus{outline:0;}body{line-height:1;color:#000;background:#FFF;}ol,ul{list-style:none;}table{border-collapse:separate;border-spacing:0;}caption,th,td{text-align:left;font-weight:400;}blockquote:before,blockquote:after,q:before,q:after{content:"";}
+
+/* Fonts */
+@font-face {
+	font-family: 'BebasRegular';
+	src: url('../fonts/BEBAS___-webfont.eot');
+	src: local('☺'), url('../fonts/BEBAS___-webfont.woff') format('woff'), url('../fonts/BEBAS___-webfont.ttf') format('truetype'), url('../fonts/BEBAS___-webfont.svg#webfontnqJLEELI') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Globals */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+    display:block;
+}
+
+html { overflow-y: scroll; }
+
+body {
+    width: 90%;
+    max-width: 960px;
+	margin: 2.5% auto 0;
+	font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+header { height: 71px; }
+
+h1 {
+	font: 40px "BebasRegular", sans-serif;
+	margin-bottom: 18px;
+	color: #111;
+	float: left;
+}
+
+h1 a {
+	color: #000;
+	text-decoration: none;
+    font-weight: normal;
+}
+
+h1 a:hover, h1 a:focus {
+	text-shadow: 0 -1px 0 #FFF;
+	background: #D5F4B9;
+	padding: 0 7px 5px;
+	margin: 0 -7px -5px;
+	cursor: pointer;
+}
+
+.twitter-share-button { 
+	float: right;
+	margin-top: 30px;
+}
+
+p {
+	color: #444;
+	line-height: 1.7em;
+	margin-bottom: 1.1em;
+}
+
+strong { font-weight: bold; }
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #444;
+}
+
+a:hover {
+	background: #D5F4B9;
+	padding: 2px;
+	margin: -2px;
+}
+
+/* About */
+#about {
+    overflow: hidden;
+}
+
+h2 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0 0 0.2em;
+}
+
+/* Main Content */
+form p:first-child {
+	color: #333;
+	text-shadow: 0 -1px 0 #FFF;
+	background: rgba(0, 0, 0, 0.05);
+	background: -webkit-gradient(linear, left bottom, left top, color-stop(0.35, rgba(0, 0, 0, 0.05)), color-stop(0, rgba(0, 0, 0, 0.125)));
+	background: -moz-linear-gradient(center bottom, #E0E0E0 0%, #F3F3F3 35%);
+	position: relative;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 2px solid rgba(0, 0, 0, 0.25);
+	padding: 7px 10px 12px;
+	z-index: 0;
+    width: 100%;
+}
+
+form p:first-child:before {
+	content: '';
+	display: block;
+	position: absolute;
+	border: 1px solid #FFF;
+	width: 100%;
+	height: 100%;
+	top: -1px;
+	left: -1px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 1;
+}
+
+form p * {
+	position: relative;
+	z-index: 2;
+}
+
+.error {
+	font-weight: bold;
+	color: #F00;
+	margin-bottom: 1.5em;
+}
+
+textarea {
+	font: 12px "Monaco", "Inconsolata", "Courier New", Courier, monospace;
+	background: none;
+	width: 100%;
+	border: none;
+	padding: 0;
+	margin: 0 0 10px 0;
+	color: #333;
+	resize: vertical;
+	-moz-resize: vertical;
+	display: block;
+	position: relative;
+	z-index: 0;
+}
+
+textarea::-webkit-input-placeholder, 
+textarea.placeholder {
+	color: #666;
+}
+
+textarea:focus::-webkit-input-placeholder { color: #999; }
+
+label { padding: 2px; margin: -2px; }
+
+label, input[type="button"], input[type="submit"], button { cursor: pointer; }
+
+label, input[type="radio"], input[type="checkbox"], #submit { vertical-align: middle; }
+
+#submit { margin-left: 20px; }
+
+button[disabled="disabled"] { cursor: wait; }
+
+/* Footer */
+footer {
+	margin-top: 20px;
+	color: #444;
+}
