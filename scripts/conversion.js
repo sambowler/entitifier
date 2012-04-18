@@ -1,4 +1,3 @@
-// TODO: Strings to ignore (e.g. <%= %> etc.)
 function Conversion(text, typographicQuotes) {
     var tests = [],
         results = [],

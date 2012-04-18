@@ -1,6 +1,7 @@
 // TODO: Logo
 // TODO: JavaScript Disabled (still provide content)
-// TODO: GA for entitify button clicked
+// TODO: Strings to ignore (e.g. <%= %> etc.)
+// TODO: Option to choose named and unicode entities
 $(function() {	
 	$('textarea').focus();
 	
@@ -9,15 +10,12 @@ $(function() {
 
     $('#about').hide();
 
-    // Show ads if the screen is wide enough
-    if(window.matchMedia('(min-width: 720px)').matches) {
-        var s = document.createElement('script');
-        s.src = 'http://pagead2.googlesyndication.com/pagead/show_ads.js';
-
-        $('#main').after(s);
-    }
-
     $('#more').click(function() { 
+        var $mol = $('#more-or-less'),
+            molCurr = $mol.text(),
+            molNew = (molCurr == 'more') ? 'less' : 'more';
+
+        $mol.text(molNew);
         $('#about').slideToggle(); 
 
         return false;
@@ -30,9 +28,13 @@ $(function() {
 		if(string && string !== '' && string !== "Text, omm nom nom") {
             var c = new Conversion(string, typQuotes);
 
-            $('textarea').fadeOut('fast', function() {
-                $(this).val(c.getNewString()).fadeIn('fast');
+            $('.error').remove();
+
+            $('textarea') .fadeOut(function() {
+                $(this).val(c.getNewString()).fadeIn();
             });
+
+            _gaq.push(['_trackEvent', 'Entitify', 'Click']);
 
 			return false;
 		} else if(!string || string == "Text, omm nom nom") {
