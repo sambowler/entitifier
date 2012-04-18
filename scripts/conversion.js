@@ -1,5 +1,4 @@
 // TODO: Strings to ignore (e.g. <%= %> etc.)
-// TODO: More content on homepage
 function Conversion(text, typographicQuotes) {
     var tests = [],
         results = [],

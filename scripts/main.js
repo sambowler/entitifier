@@ -1,9 +1,7 @@
 // TODO: Logo
 // TODO: JavaScript Disabled (still provide content)
 // TODO: GA for entitify button clicked
-// TODO: Convert to numerical entities
 $(function() {	
-    // TODO
 	$('textarea').focus();
 	
 	var height = $(document).height() - 420;

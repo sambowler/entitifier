@@ -5,13 +5,15 @@ This is my first foray in to Ruby and Sinatra development hence the code is prob
 ## Known issues
 
 - Dealing with inline language tags such as <?php ?> or <%= %>
-- Hpricot doesn't like HTML5 elements
 
 ## History
 
 ### XXX XX, 2012: V2
 - Complete rewrite in JavaScript
 - Now fully compatible with all HTML tags
+- Automatically deals with HTML and text (the user no longer has to
+  specify)
+- Migrated to numerical entities for wider support
 
 ### Sep 22, 2010: V1
 
