@@ -1,40 +1,40 @@
+// TODO: Logo
+// TODO: JavaScript Disabled (still provide content)
+// TODO: GA for entitify button clicked
+// TODO: Convert to numerical entities
 $(function() {	
     // TODO
-	$('#javascript_disabled').remove();
 	$('textarea').focus();
 	
-	var height = $(document).height() - 410;
+	var height = $(document).height() - 420;
 	$('textarea').css('height', height + 'px');
+
+    $('#about').hide();
+
+    // Show ads if the screen is wide enough
+    if(window.matchMedia('(min-width: 720px)').matches) {
+        var s = document.createElement('script');
+        s.src = 'http://pagead2.googlesyndication.com/pagead/show_ads.js';
+
+        $('#main').after(s);
+    }
+
+    $('#more').click(function() { 
+        $('#about').slideToggle(); 
+
+        return false;
+    });
 	
 	$('#submit').click(function() {
 		var string = $('textarea').val(),
-            html = ($('#html').is(':checked')) ? true : false;
             typQuotes = ($('#typographic_quotes').is(':checked')) ? true : false;
 
 		if(string && string !== '' && string !== "Text, omm nom nom") {
-            var c = new Conversion(string, html, typQuotes);
+            var c = new Conversion(string, typQuotes);
 
             $('textarea').fadeOut('fast', function() {
                 $(this).val(c.getNewString()).fadeIn('fast');
             });
-
-            //$.ajax({
-				//type: 'POST',
-				//url: '/',
-				//ifModified: true,
-				//data: { html: textarea, text_or_html: radioval, typographic_quotes: typ_quotes },
-				//success: function(d) {
-					//if(d) {
-						//$('textarea').fadeOut('fast', function() {
-							//$(this).val(d).fadeIn('fast');
-							//val = d;
-						//});
-						//// $('button[disabled="disabled"]').removeAttr('disabled');
-					//} else {
-						//return false;
-					//};
-				//},
-			//});
 
 			return false;
 		} else if(!string || string == "Text, omm nom nom") {
@@ -42,15 +42,12 @@ $(function() {
 				$('form').before('<p class="error">I need some text!</p>');
 				$('textarea').css('height', $('textarea').height() - 41 + 'px');
 			}
-		} else if(!radioVal) {
-			$('#text').prev().css('backgroundColor', '#FF0'); 
-			$('#html').prev().css('backgroundColor', '#FF0');
 		}
 
 		return false;
 	});
 	
-	if(!Modernizr.input.placeholder) { // Uses modernizr to check placeholder support
+	if(!'placeholder' in $('<input>')[0]) { // Check for native support
 		var el = $('textarea');
 		var placeholder = el.attr('placeholder');
 		

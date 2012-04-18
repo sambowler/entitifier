@@ -1,31 +1,26 @@
-// TODO: Abstract libraries out so not created on object instantiation
-function Conversion(text, html, typographicQuotes) {
-    var ret = text,
-        tests = [],
+// TODO: Strings to ignore (e.g. <%= %> etc.)
+// TODO: More content on homepage
+function Conversion(text, typographicQuotes) {
+    var tests = [],
         results = [],
         d = new DOMParser();
 
     // Construct an array of tests
-    // TODO: Automatically detect HTML
-    if(html) {
-        var doc = d.parseFromString(text, 'text/html');
+    // If there isn't any valid HTML, the DOM is automatically constructed
+    var doc = d.parseFromString(text, 'text/html');
 
-        // http://stackoverflow.com/a/2084614
-        $(doc).contents().each(function processNodes() {
-            if(this.nodeType == 3) {
-                // FIXME: Shouldn't entitify characters in <script> tags
-                var trimmed = $.trim(this.textContent);
+    // http://stackoverflow.com/a/2084614
+    $(doc).contents().each(function processNodes() {
+        if(this.nodeType == 3 && this.parentNode.nodeName.toLowerCase() != 'script') {
+            var trimmed = $.trim(this.textContent);
 
-                if(trimmed.length != 0) {
-                    tests.push($(this).text());
-                }
-            } else {
-                $(this).contents().each(processNodes);
+            if(trimmed.length != 0) {
+                tests.push($(this).text());
             }
-        });
-    } else {
-        tests.push(text);
-    }
+        } else {
+            $(this).contents().each(processNodes);
+        }
+    });
 
     var results = this.generateResults(tests, typographicQuotes);
     this.newString = this.replaceOriginals(text, tests, results);
@@ -238,7 +233,6 @@ Conversion.prototype.entities = {
     'ϑ': '&thetasym;',
     'ϒ': '&upsih;',
     'ϖ': '&piv;',
-    '–': '&ndash;',
     '—': '&mdash;',
     '‘': '\'',
     '’': '\'',
@@ -329,5 +323,5 @@ Conversion.prototype.typographicQuotesLibrary = {
   '‘': '&lsquo;',
   '’': '&rsquo;',
   '“': '&ldquo;',
-  '”': '&rdquo;'
+  '”': '&rdquo;',
 }
